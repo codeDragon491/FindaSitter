@@ -1,0 +1,29 @@
+<div class="layout">
+  <h1 class="mat-display-1">Find your Family</h1>
+  <!--Filter comes here -->
+  <div class="card-layout">
+    <mat-card class="example-card" *ngFor="let baby of babies">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image-baby" routerLink="/family-detail/{{baby._id}}" routerLinkActive="active"></div>
+        <mat-card-title class="example-title" routerLink="/family-detail/{{baby._id}}" routerLinkActive="active">{{baby.firstname}} {{baby.lastname}} Born on {{baby.birthdate | date:'MMM d, y'}} </mat-card-title>
+        <mat-card-subtitle class="example-subtitle" routerLink="/family-detail/{{baby._id}}" routerLinkActive="active">{{baby.gender}} from {{baby.area}}</mat-card-subtitle>
+        <mat-card-subtitle>Rating: {{baby.rating}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image class="example-image" src="/assets/images/baby.jpg" alt="Photo of a Shiba Inu" routerLink="/family-detail/{{baby._id}}"
+        routerLinkActive="active">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+        <button *ngIf="authService.isAdmin" mat-button class="edit-baby" routerLink="/edit-family/{{baby._id}}" routerLinkActive="active">EDIT</button>
+        <button *ngIf="authService.isAdmin" mat-button class="delete-baby">DELETE</button>
+      </mat-card-actions>
+      <!--<app-family-detail [babyInput]="baby" (babyClick)="onBabyClicked($event)"></app-family-detail>-->
+    </mat-card>
+  </div>
+</div>

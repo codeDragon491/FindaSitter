@@ -1,0 +1,54 @@
+<div class="layout">
+  <h1 class="mat-display-1">Find your Sitter</h1>
+  <!--Filter comes here -->
+  <mat-form-field class="example-field">
+    <input class="search-input" type="text" [(ngModel)]="search" matInput placeholder="Search for sitters">
+  </mat-form-field>
+  <div class="card-layout">
+    <mat-card class="example-card" *ngFor="let sitter of sitters | filterSitters: search">
+      <div *ngIf="sitter === -1"> No sitter found </div>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image-sitter" [routerLink]="['/sitter-detail', sitter._id ]"></div>
+        <mat-card-title class="example-title" [routerLink]="['/sitter-detail', sitter._id ]" routerLinkActive="active">
+          <input type="hidden" [(ngModel)]="name" value="{{sitter.firstname}} {{sitter.lastname}}">{{sitter.firstname}} {{sitter.lastname}}, born on {{sitter.birthdate | date: 'MMM d, y'}}
+        </mat-card-title>
+        <mat-card-subtitle class="example-subtitle" [routerLink]="['/sitter-detail', sitter._id ]" routerLinkActive="active">{{sitter.gender}} from {{sitter.area}}</mat-card-subtitle>
+        <mat-card-subtitle>Rate per hour: {{sitter.rate}} </mat-card-subtitle>
+        <mat-card-subtitle>Rating: {{sitter.rating}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image class="example-image" src="/assets/images/Sitter-Sweet-Our-Sitters.jpg" alt="Photo of a Shiba Inu" [routerLink]="['/sitter-detail', sitter._id ]"
+        routerLinkActive="active">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+        </p>
+        <div *ngIf="deleted">
+          You deleted:
+          <i>{{sitter.firstname}} {{sitter.lastname}}</i>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+        <button mat-button (click)="openRateDialog(sitter._id)">RATE</button>
+        <button *ngIf="authService.isAdmin" mat-button class="edit-sitter" routerLink="/edit-sitter/{{sitter._id}}">EDIT</button>
+        <button *ngIf="authService.isAdmin" mat-button class="delete-sitter" (click)="openDeleteDialog(sitter._id)">DELETE</button>
+        <!--isOn parameter-->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<!-- regular list for displaying sitters
+  <ul class="sitters">
+    <li *ngFor="let sitter of sitters " (click)="onSelect(sitter) ">
+      <h4 class="badge ">{{sitter.firstname}} {{sitter.lastname}}</h4>
+      <span class="badge ">{{sitter.birthDate}}</span>
+      <span class="badge ">{{sitter.area}}</span>
+      <span class="badge ">{{sitter.rating}}</span>
+      <span class="badge ">{{sitter.gender}}</span>
+      <span class="badge ">{{sitter.rate}}</span>
+      <span class="badge ">{{sitter.workAreas}}</span>
+    </li>
+  </ul>
+</div>-->

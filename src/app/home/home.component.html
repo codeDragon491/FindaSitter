@@ -1,0 +1,44 @@
+<div [style.background]=" 'url(../../assets/images/cover-baby.jpg)' " class="cover"></div>
+<!--<p>{{message}}</p>-->
+<!--<app-login style="text-align:center;" *ngIf="loginIsActive"></app-login>
+      <app-register style="text-align:center;" *ngIf="signupIsActive"></app-register>-->
+<mat-grid-list cols="1" rowHeight="100px">
+  <mat-grid-tile>
+    <h4>How does it work?</h4>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="5" rowHeight="5:1">
+  <mat-grid-tile class="tileTitle">
+    <p>1.Create a profile</p>
+  </mat-grid-tile>
+  <mat-grid-tile class="tileTitle">
+    <p>2.Search</p>
+  </mat-grid-tile>
+  <mat-grid-tile class="tileTitle">
+    <p>3.Get in touch</p>
+  </mat-grid-tile>
+  <mat-grid-tile class="tileTitle">
+    <p>4.Exchange messages</p>
+  </mat-grid-tile>
+  <mat-grid-tile class="tileTitle">
+    <p>5.Sign a contract</p>
+  </mat-grid-tile>
+</mat-grid-list>
+<mat-grid-list cols="5" rowHeight="100px">
+  <mat-grid-tile>
+    <mat-icon>account_circle</mat-icon>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-icon>search</mat-icon>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-icon>contacts</mat-icon>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-icon>message</mat-icon>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-icon>assignment</mat-icon>
+  </mat-grid-tile>
+</mat-grid-list>
+<router-outlet></router-outlet>

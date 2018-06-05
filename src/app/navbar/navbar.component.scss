@@ -1,0 +1,16 @@
+.mat-toolbar {
+  height: 104px !important;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 0.1;
+}
+
+.mat-menu-panel {
+  margin-top: 70px !important;
+}

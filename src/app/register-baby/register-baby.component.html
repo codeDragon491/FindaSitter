@@ -1,0 +1,82 @@
+<h2 class="mat-title" style="text-align:center;">Register as a baby</h2>
+<form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+  <mat-form-field class="example-full-width">
+    <input id="firstname" formControlName="firstname" matInput placeholder="First Name">
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.firstname.invalid && (registerForm.controls.firstname.dirty || 
+  registerForm.controls.firstname.touched)" class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.firstname.errors.required">
+      You must fill out your firstname
+    </div>
+    <div class="error mat-body-2" *ngIf="registerForm.controls.firstname.errors.minlength">
+      Firstname must be at least 2 characters long
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="lastname" formControlName="lastname" matInput placeholder="Last Name">
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.lastname.invalid && (registerForm.controls.lastname.dirty || 
+  registerForm.controls.lastname.touched)" class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.lastname.errors.required">
+      You must fill out your lastname
+    </div>
+    <div class="error mat-body-2" *ngIf="registerForm.controls.lastname.errors.minlength">
+      Lastname must be at least 2 characters long.
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="birthdate" formControlName="birthdate" matInput [matDatepicker]="picker" placeholder="Birth Date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div class="error mat-body-2" *ngIf="registerForm.controls.birthdate.errors?.required &&
+  registerForm.controls.birthdate.touched">
+    You must pick your birthdate
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-select formControlName="area" placeholder="Living area">
+      <mat-option *ngFor="let area of areas" [value]="area.value">
+        {{ area.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.area.invalid && (registerForm.controls.area.dirty || registerForm.controls.area.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.area.errors.required">
+      You must select your living area
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="username" formControlName="username" matInput placeholder="Username">
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.username.invalid && (registerForm.controls.username.dirty || registerForm.controls.username.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.username.errors.required">
+      You must fill out your username
+    </div>
+    <div class="error mat-body-2" *ngIf="registerForm.controls.username.errors.email && !registerForm.controls.username.errors.required">
+      Invalid email address
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="password" formControlName="password" matInput placeholder="Password">
+  </mat-form-field>
+  <br>
+  <div *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.password.errors.required">
+      You must fill out your password
+    </div>
+    <div class="error mat-body-2" *ngIf="registerForm.controls.password.errors.invalidPassword && 
+    !registerForm.controls.password.errors.required">
+      Provide a password of at least 6 characters, including at least 1 capital letter, at least 1 lower-case letter and at least
+      1 number
+    </div>
+  </div>
+  <button id="register" mat-raised-button color="primary" (click)="usersActions.setType(true)">Register</button>
+</form>

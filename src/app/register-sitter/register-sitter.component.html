@@ -1,0 +1,106 @@
+<h2 class="mat-title" style="text-align:center;">Register as a sitter</h2>
+<form id="frmRegisterSitter" class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+  <mat-form-field class="example-full-width">
+    <input id="firstname" formControlName="firstname" matInput placeholder="First Name">
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.firstname.invalid && (registerForm.controls.firstname.dirty || registerForm.controls.firstname.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.firstname.errors.required">
+      You must fill out your firstname
+    </div>
+    <div class="error mat-body-2" *ngIf="registerForm.controls.firstname.errors.minlength">
+      Firstname must be at least 2 characters long
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="lastname" formControlName="lastname" matInput placeholder="Last Name">
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.lastname.invalid && (registerForm.controls.lastname.dirty || registerForm.controls.lastname.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.lastname.errors.required">
+      You must fill out your lastname
+    </div>
+    <div class="error mat-body-2" *ngIf="registerForm.controls.lastname.errors.minlength">
+      Lastname must be at least 2 characters long.
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="birthdate" formControlName="birthdate" matInput [matDatepicker]="picker" placeholder="Birth Date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div class="error mat-body-2" *ngIf="registerForm.controls.birthdate.errors?.required && registerForm.controls.birthdate.touched">
+    You must pick your birthdate
+  </div>
+  <div class="example-selected-value mat-subheading-2">Your gender is: {{gender}}</div>
+  <mat-radio-group id="gender" formControlName="gender" class="example-full-width" class="example-radio-group">
+    <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender" required>
+      {{gender}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <div *ngIf="invalid" class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.gender.errors.required">
+      You must select your gender
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-select id="area" formControlName="area" placeholder="Working area">
+      <mat-option *ngFor="let area of areas" [value]="area">
+        {{ area }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.area.invalid && (registerForm.controls.area.dirty || registerForm.controls.area.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.area.errors.required">
+      You must select your working area
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-select id="rate" formControlName="rate" placeholder="Rate">
+      <mat-option *ngFor="let rate of rates" [value]="rate">
+        {{ rate }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.rate.invalid && (registerForm.controls.rate.dirty || registerForm.controls.rate.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.rate.errors.required">
+      You must select your rate
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="username" formControlName="username" matInput placeholder="Username">
+  </mat-form-field>
+  <div *ngIf="registerForm.controls.username.invalid && (registerForm.controls.rate.dirty || registerForm.controls.rate.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.username.errors.required">
+      You must fill out your username
+    </div>
+    <div class="error mat-body-2" *ngIf="registerForm.controls.username.errors.email && !registerForm.controls.username.errors.required">
+      Invalid email address
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="password" formControlName="password" matInput placeholder="Password">
+  </mat-form-field>
+  <br>
+  <div *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="registerForm.controls.password.errors.required">
+      You must fill out your password
+    </div>
+    <div class="error mat-body-2" *ngIf="registerForm.controls.password.errors.invalidPassword && !registerForm.controls.password.errors.required">
+      Provide a password of at least 6 characters, including at least 1 capital letter, at least 1 lower-case letter and at least
+      1 number
+    </div>
+  </div>
+
+  <button id="register" mat-raised-button color="primary">Register</button>
+</form>

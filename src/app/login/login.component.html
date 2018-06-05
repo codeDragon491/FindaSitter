@@ -1,0 +1,37 @@
+<h2 class="mat-title" style="text-align:center;">Login</h2>
+<form class="example-form" [formGroup]="loginForm" (submit)="onSubmit(loginForm)" novalidate>
+
+  <mat-form-field class="example-full-width">
+    <input id="username" formControlName="username" matInput placeholder="Username">
+  </mat-form-field>
+  <div *ngIf="loginForm.controls.username.invalid && (loginForm.controls.username.dirty || loginForm.controls.username.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="loginForm.controls.username.errors.required">
+      You must fill out your username
+    </div>
+    <div class="error mat-body-2" *ngIf="loginForm.controls.username.errors.email && !loginForm.controls.username.errors.required">
+      Invalid email address
+    </div>
+  </div>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input id="password" formControlName="password" matInput placeholder="Password">
+  </mat-form-field>
+  <br>
+  <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+    class="alert alert-danger">
+    <div class="error mat-body-2" *ngIf="loginForm.controls.password.errors.required">
+      You must fill out your password
+    </div>
+    <div class="error mat-body-2" *ngIf="loginForm.controls.password.errors.invalidPassword && !loginForm.controls.password.errors.required">
+      Provide a password of at least 6 characters, including at least 1 capital letter, at least 1 lower-case letter and at least
+      1 number
+    </div>
+  </div>
+
+  <!--<p>Form value: {{ loginForm.value | json }}</p>
+  <p>Form status: {{ loginForm.status | json }}</p>-->
+
+  <button id="login" mat-raised-button color="primary" type="submit">Login</button>
+  <!--[disabled]="loginForm.invalid"-->
+</form>

@@ -1,0 +1,40 @@
+<mat-toolbar>
+  <a routerLink="home">
+    <img alt="findasitter" src="/assets/images/findasitter_logo.png">
+  </a>
+  <div class="navigation">
+    <button *ngIf="authService.isAdmin" routerLink="find-sitter" routerLinkActive="active" mat-button>Manage sitters
+    </button>
+    <button *ngIf="!authService.isAdmin" mat-button [matMenuTriggerFor]="menuSitter">For sitters
+    </button>
+    <mat-menu class="example-menu" #menuSitter="matMenu">
+      <button mat-menu-item routerLink="find-family" routerLinkActive="active">
+        <span>Find a familiy</span>
+      </button>
+      <button *ngIf="!authService.isLoggedIn" mat-menu-item routerLink="register-sitter" routerLinkActive="active">
+        <span>Register as a sitter</span>
+      </button>
+    </mat-menu>
+    <button *ngIf="authService.isAdmin" mat-button routerLink="find-family" routerLinkActive="active">Manage families
+    </button>
+    <button *ngIf="!authService.isAdmin" mat-button [matMenuTriggerFor]="menuFamily">For host families
+    </button>
+    <mat-menu class="example-menu" #menuFamily="matMenu">
+      <button id="find-sitter" mat-menu-item routerLink="find-sitter" routerLinkActive="active">
+        <span>Find a sitter</span>
+      </button>
+      <button *ngIf="!authService.isLoggedIn" mat-menu-item routerLink="register-baby" routerLinkActive="active">
+        <!--(click)="showSignupForm()"-->
+        <span>Register as a family</span>
+      </button>
+    </mat-menu>
+    <!--template statement-->
+    <button mat-button routerLink="home/about" routerLinkActive="active">About us</button>
+    <button mat-button routerLink="home/contact" routerLinkActive="active">Contact us</button>
+    <button *ngIf="!authService.isLoggedIn" mat-button routerLink="login" routerLinkActive="active">Login</button>
+    <button (click)="onLogout()" *ngIf="authService.isLoggedIn" mat-button>Logout</button>
+    <!-- (click)="showLoginForm()" -->
+  </div>
+</mat-toolbar>
+<!--<app-login style="text-align:center;" *ngIf="loginIsActive"></app-login>
+<app-register style="text-align:center;" *ngIf="signupIsActive"></app-register>-->

@@ -1,0 +1,49 @@
+<!--<p (click)="onBabyClick(babyInput)">
+  {{babyInput.firstname}} {{babyInput.lastname}}
+
+</p>-->
+<div class="layout-detail">
+  <!--Filter comes here -->
+  <form class="example-form" [formGroup]="updateBabyForm" (ngSubmit)="onSubmit(updateBabyForm)">
+    <div class="card-layout-edit">
+      <mat-card class="example-card-edit">
+        <img mat-card-image class="edit-image" src="/assets/images/baby.jpg" alt="Photo of a Shiba Inu">
+        <!--<mat-card-content>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button></button>
+          <button mat-button></button>
+        </mat-card-actions>-->
+        <mat-list>
+          <mat-list-item>Rating:
+            <input matInput formControlName="rating" class="edit-input" value="{{baby.rating}}">
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+    <div cass="info-layout">
+      <h1 class="mat-display-1">
+        Fullname:
+        <input matInput formControlName="firstname" class="edit-input" value="{{baby.firstname}}">
+        <input matInput formControlName="lastname" class="edit-input" value="{{baby.lastname}}">
+      </h1>
+      <h2 class="mat-title">from
+        <input matInput formControlName="area" class="edit-input" value="{{baby.area}}">
+      </h2>
+      <h2 class="mat-title ">Birthdate:
+        <input matInput formControlName="birthdate" class="edit-input" [matDatepicker]="picker" placeholder="{{baby.birthdate | date:'MMM d, y'}}">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </h2>
+      <h2 class="mat-title">Username
+        <input matInput formControlName="username" class="edit-input" value="{{baby.username}}">
+      </h2>
+      <p class="mat-body-1">
+        <textarea class="mat-body-1" matInput class="edit-input" value="The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting."></textarea>
+      </p>
+      <button id="edit-baby" mat-raised-button color="primary">Save</button>
+    </div>
+  </form>
+</div>

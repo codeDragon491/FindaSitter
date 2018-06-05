@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Rate sitter {{ sitter.firstname }} {{ sitter.lastname }}</h2>
+<mat-dialog-content class="mat-body-1">
+  <ngb-rating [(ngModel)]="currentRate">
+    <ng-template let-fill="fill">
+      <span class="star" [class.filled]="fill">&#9733;</span>
+    </ng-template>
+  </ngb-rating>
+  <hr>
+  <pre>Rate: <b>{{currentRate}}</b></pre>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button (click)="rateSitter(currentRate)" [mat-dialog-close]="true">Rate</button>
+</mat-dialog-actions>
